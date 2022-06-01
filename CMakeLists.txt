@@ -9,36 +9,38 @@ set(CMAKE_CXX_STANDARD 17)
 set(PROJECT_ROOT ${CMAKE_SOURCE_DIR})
 set(PROJECT_BIN "${PROJECT_ROOT}/bin")
 
-# trapper
+# # trapper
 
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+# list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
-file(DOWNLOAD https://raw.githubusercontent.com/kabukunz/trapper/main/Trapper.cmake "${CMAKE_MODULE_PATH}/Trapper.cmake")
+# file(DOWNLOAD https://raw.githubusercontent.com/kabukunz/trapper/main/Trapper.cmake "${CMAKE_MODULE_PATH}/Trapper.cmake")
 
-include(Trapper)
+# include(Trapper)
 
-# libigl
+# # libigl
 
-trapper_add_package(
-    libigl
-    https://github.com/kabukunz/libigl.git
-    5749e43a6862a88a61d5a82cb478e595e0cd65b3
+# trapper_add_package(
+#     libigl
+#     https://github.com/kabukunz/libigl.git
+#     5749e43a6862a88a61d5a82cb478e595e0cd65b3
     
-    HEADER_ONLY
-    VERBOSE
+#     HEADER_ONLY
+#     VERBOSE
 
-    SOURCE_DIR "${CMAKE_SOURCE_DIR}/dep"
-    )
+#     SOURCE_DIR "${CMAKE_SOURCE_DIR}/dep"
+#     )
 
 # set nanoflann dir
-set(libigl_DIR ${TRAPPER_SOURCE_DIR} CACHE STRING "libigl DIR")
+set(libigl_DIR ${CMAKE_SOURCE_DIR}/include/libigl CACHE STRING "libigl DIR")
 
 # set nanoflann include dir (with no target)
 include_directories(${PROJECT_NAME} PUBLIC "${libigl_DIR}/include")
+include_directories(${PROJECT_NAME} PUBLIC "${libigl_DIR}/include/igl/opengl/glfw/imgui")
 
 # eigen
 set(eigen_DIR "${libigl_DIR}/external/eigen")
 include_directories(${eigen_DIR})
+
 
 
 # # libigl
