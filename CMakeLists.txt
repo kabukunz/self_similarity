@@ -9,37 +9,68 @@ set(CMAKE_CXX_STANDARD 17)
 set(PROJECT_ROOT ${CMAKE_SOURCE_DIR})
 set(PROJECT_BIN "${PROJECT_ROOT}/bin")
 
-# # trapper
+# trapper
 
-# list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
-# file(DOWNLOAD https://raw.githubusercontent.com/kabukunz/trapper/main/Trapper.cmake "${CMAKE_MODULE_PATH}/Trapper.cmake")
+file(DOWNLOAD https://raw.githubusercontent.com/kabukunz/trapper/main/Trapper.cmake "${CMAKE_MODULE_PATH}/Trapper.cmake")
 
-# include(Trapper)
+include(Trapper)
 
-# # libigl
+# libigl
 
-# trapper_add_package(
-#     libigl
-#     https://github.com/kabukunz/libigl.git
-#     5749e43a6862a88a61d5a82cb478e595e0cd65b3
+# build libigl as a static library, if OFF use it as header-only library    
+set(LIBIGL_USE_STATIC_LIBRARY OFF CACHE BOOL "" FORCE)
+set(LIBIGL_USE_PREBUILT_LIBRARIES OFF CACHE BOOL "" FORCE)
+
+
+option(LIBIGL_WITH_ANTTWEAKBAR       "Use AntTweakBar"                  OFF)
+option(LIBIGL_WITH_CGAL              "Use CGAL"                         OFF)
+option(LIBIGL_WITH_COMISO            "Use CoMiso"                       OFF)
+option(LIBIGL_WITH_CORK              "Use Cork"                         OFF)
+option(LIBIGL_WITH_TETGEN            "Use Tetgen"                       OFF)
+option(LIBIGL_WITH_LIM               "Use LIM"                          OFF)
+option(LIBIGL_WITH_MATLAB            "Use Matlab"                       OFF)
+option(LIBIGL_WITH_MOSEK             "Use MOSEK"                        OFF)
+option(LIBIGL_WITH_EMBREE            "Use Embree"                       OFF)
+option(LIBIGL_WITH_VIEWER            "Use OpenGL viewer"                ON)
+option(LIBIGL_WITH_OPENGL            "Use OpenGL"                       ON)
+option(LIBIGL_WITH_OPENGL_GLFW       "Use GLFW"                         ON)
+option(LIBIGL_WITH_OPENGL_GLFW_IMGUI "Use ImGui"                        ON)
+option(LIBIGL_WITH_PYTHON            "Use Python"                       OFF)
+option(LIBIGL_WITH_TRIANGLE          "Use Triangle"                     OFF)
+option(LIBIGL_WITH_MMG               "Use Mmg"                          OFF)
+option(LIBIGL_WITH_PREDICATES        "Use exact predicates"             ON)
+option(LIBIGL_WITH_XML               "Use XML"                          ON)
+option(LIBIGL_WITH_PNG               "Use PNG"                          OFF)
+
+
+trapper_add_package(
+    libigl
+    https://github.com/kabukunz/libigl.git
+    5749e43a6862a88a61d5a82cb478e595e0cd65b3
     
-#     HEADER_ONLY
-#     VERBOSE
+    HEADER_ONLY
+    VERBOSE
 
-#     SOURCE_DIR "${CMAKE_SOURCE_DIR}/dep"
-#     )
+    SOURCE_DIR "${CMAKE_SOURCE_DIR}/dep"
+    )
 
 # set nanoflann dir
-set(libigl_DIR ${CMAKE_SOURCE_DIR}/include/libigl CACHE STRING "libigl DIR")
+set(libigl_DIR ${TRAPPER_SOURCE_DIR} CACHE STRING "libigl DIR")
 
 # set nanoflann include dir (with no target)
+add_subdirectory(${libigl_DIR})
 include_directories(${PROJECT_NAME} PUBLIC "${libigl_DIR}/include")
 include_directories(${PROJECT_NAME} PUBLIC "${libigl_DIR}/include/igl/opengl/glfw/imgui")
+include_directories(${PROJECT_NAME} PUBLIC "${libigl_DIR}/external/glad/include")
+include_directories(${PROJECT_NAME} PUBLIC "${libigl_DIR}/external/glfw/include")
+
+
 
 # eigen
 set(eigen_DIR "${libigl_DIR}/external/eigen")
-include_directories(${eigen_DIR})
+include_directories(${PROJECT_NAME} PUBLIC ${eigen_DIR})
 
 
 

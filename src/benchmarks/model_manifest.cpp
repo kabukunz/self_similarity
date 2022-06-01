@@ -2,8 +2,13 @@
 
 #include <algorithm>
 
+#ifdef _WIN32
+
 #include <windows.h>
+
 #include <shlwapi.h>
+
+#endif
 
 void read_directory(const std::string& dir, std::vector<std::string>& v) {
 	std::string pattern(dir);

@@ -4,7 +4,7 @@
 #include <memory>
 #include <map>
 
-#include <Eigen\Dense>
+#include <Eigen/Dense>
 
 #include <geometry/component.h>
 #include <matching/geodesic_fan.h>

@@ -14,9 +14,9 @@
 #include <igl/harmonic.h>
 #include <igl/map_vertices_to_circle.h>
 
-#include <Eigen\Dense>
-#include <Eigen\Sparse>
-#include <Eigen\Geometry>
+#include <Eigen/Dense>
+#include <Eigen/Sparse>
+#include <Eigen/Geometry>
 
 //#include <trimesh.h>
 #include <geometry/mesh.h>

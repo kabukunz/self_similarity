@@ -1,7 +1,7 @@
 #ifndef QUADRATIC_BUMP_H_
 #define QUADRATIC_BUMP_H_
 
-#include <Eigen\Dense>
+#include <Eigen/Dense>
 
 template <class T>
 class QuadraticBump {
@@ -23,6 +23,6 @@ class QuadraticBump {
 		T _magnitude;
 };
 
-#include <matching\quadratic_bump.cpp>
+#include <matching/quadratic_bump.cpp>
 
 #endif
