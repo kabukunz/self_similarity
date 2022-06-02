@@ -93,5 +93,8 @@ double DesireSet<T>::energy_shift_by_index(T index) {
 		shift(bump.feature_index()) += bump.energy_shift_by_paramter(index);
 	}
 
-	return shift;
+    // NOTE: just guessing here
+    double shiftMean = shift.mean();
+
+	return shiftMean;
 }

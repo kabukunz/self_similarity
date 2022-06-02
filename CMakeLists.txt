@@ -59,12 +59,15 @@ trapper_add_package(
 # set nanoflann dir
 set(libigl_DIR ${TRAPPER_SOURCE_DIR} CACHE STRING "libigl DIR")
 
+message(WARNING "libigl_DIR: ${libigl_DIR}")
+
 # set nanoflann include dir (with no target)
 add_subdirectory(${libigl_DIR})
-include_directories(${PROJECT_NAME} PUBLIC "${libigl_DIR}/include")
-include_directories(${PROJECT_NAME} PUBLIC "${libigl_DIR}/include/igl/opengl/glfw/imgui")
-include_directories(${PROJECT_NAME} PUBLIC "${libigl_DIR}/external/glad/include")
-include_directories(${PROJECT_NAME} PUBLIC "${libigl_DIR}/external/glfw/include")
+include_directories("${libigl_DIR}/include")
+include_directories("${libigl_DIR}/include/igl/opengl/glfw/imgui")
+include_directories("${libigl_DIR}/external/glad/include")
+include_directories("${libigl_DIR}/external/glfw/include")
+include_directories("${libigl_DIR}/external/imgui")
 
 
 
