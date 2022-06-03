@@ -9,13 +9,14 @@ set(CMAKE_CXX_STANDARD 17)
 set(PROJECT_ROOT ${CMAKE_SOURCE_DIR})
 set(PROJECT_BIN "${PROJECT_ROOT}/bin")
 
-# trapper
-
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
-file(DOWNLOAD https://raw.githubusercontent.com/kabukunz/trapper/main/Trapper.cmake "${CMAKE_MODULE_PATH}/Trapper.cmake")
-
-include(Trapper)
+# trapper
+set(TRAPPER_FILE "${CMAKE_MODULE_PATH}/Trapper.cmake")
+if(NOT EXISTS ${TRAPPER_FILE})
+    file(DOWNLOAD https://raw.githubusercontent.com/kabukunz/trapper/main/Trapper.cmake ${TRAPPER_FILE})
+endif()
+include(${TRAPPER_FILE})
 
 # libigl
 
@@ -67,7 +68,7 @@ include_directories("${libigl_DIR}/include")
 include_directories("${libigl_DIR}/include/igl/opengl/glfw/imgui")
 include_directories("${libigl_DIR}/external/glad/include")
 include_directories("${libigl_DIR}/external/glfw/include")
-include_directories("${libigl_DIR}/external/imgui")
+include_directories("${libigl_DIR}/external")
 
 
 

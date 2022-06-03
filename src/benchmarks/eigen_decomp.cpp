@@ -31,7 +31,8 @@ void EigenDecomp::benchmark() {
 
 		std::string model_out = _output_dir + model->name() + "\\";
 
-		CreateDirectory(model_out.c_str(), nullptr);
+        // FIXME:
+		// CreateDirectory(model_out.c_str(), nullptr);
 
 		std::stringstream ss; ss << model_out << "\\benchmark.m";
 

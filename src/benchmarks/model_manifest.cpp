@@ -11,31 +11,32 @@
 #endif
 
 void read_directory(const std::string& dir, std::vector<std::string>& v) {
-	std::string pattern(dir);
-	pattern.append("\\*");
-	WIN32_FIND_DATA data;
-	HANDLE hFind;
+	// std::string pattern(dir);
+	// pattern.append("\\*");
+	// WIN32_FIND_DATA data;
+	// HANDLE hFind;
 
-	if ((hFind = FindFirstFile(pattern.c_str(), &data)) != INVALID_HANDLE_VALUE) {
-		do {
-			std::string name = data.cFileName;
+	// if ((hFind = FindFirstFile(pattern.c_str(), &data)) != INVALID_HANDLE_VALUE) {
+	// 	do {
+	// 		std::string name = data.cFileName;
 
-			if (name.compare(".") == 0) {
-				continue;
-			} else if (name.compare("..") == 0) {
-				continue;
-			}
+	// 		if (name.compare(".") == 0) {
+	// 			continue;
+	// 		} else if (name.compare("..") == 0) {
+	// 			continue;
+	// 		}
 
-			v.push_back(name);
-		} while (FindNextFile(hFind, &data) != 0);
+	// 		v.push_back(name);
+	// 	} while (FindNextFile(hFind, &data) != 0);
 
-		FindClose(hFind);
-	}
+	// 	FindClose(hFind);
+	// }
 }
 
 std::vector<std::string> extension_manifest_from_directory(std::string dir_path, std::string ext) {
 	std::vector<std::string> files;
-	read_directory(dir_path, files);
+    // FIXME: here
+	// read_directory(dir_path, files);
 
 	std::vector<std::string> exts;
 
@@ -43,9 +44,10 @@ std::vector<std::string> extension_manifest_from_directory(std::string dir_path,
 
 		std::string fullpath = dir_path + filename;
 
-		if (PathIsDirectoryA(fullpath.c_str())) {
-			continue;
-		}
+        // FIXME:
+		// if (PathIsDirectoryA(fullpath.c_str())) {
+		// 	continue;
+		// }
 
 		// Check extension
 		std::string tail = filename.substr(filename.length() - ext.length(), ext.length());

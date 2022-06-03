@@ -2,7 +2,7 @@
 
 #include <random>
 
-#include <igl\decimate.h>
+#include <igl/decimate.h>
 
 #include <shape_signatures/heat_kernel_signature.h>
 
