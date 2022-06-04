@@ -90,21 +90,27 @@ include_directories(${PROJECT_NAME} PUBLIC ${eigen_DIR})
 
 
 # include_directories(${libigl_DIR}/external/glad)
-file(GLOB_RECURSE HEADERS_INC1 ${CMAKE_CURRENT_SOURCE_DIR}/include/cpp-spline/*.h)
-# file(GLOB_RECURSE SOURCES_INC1 ${CMAKE_CURRENT_SOURCE_DIR}/include/cpp-spline/*.cpp)
-file(GLOB_RECURSE HEADERS_INC2 ${CMAKE_CURRENT_SOURCE_DIR}/include/sqlite/*.h)
-# file(GLOB_RECURSE SOURCES_INC2 ${CMAKE_CURRENT_SOURCE_DIR}/include/sqlite/*.cpp)
+file(GLOB_RECURSE HEADERS_INC ${CMAKE_CURRENT_SOURCE_DIR}/include/cpp-spline/*.h)
+list(APPEND HEADERS_INCLUDE ${HEADERS_INC})
+file(GLOB_RECURSE HEADERS_INC ${CMAKE_CURRENT_SOURCE_DIR}/include/sqlite/*.h)
+list(APPEND HEADERS_INCLUDE ${HEADERS_INC})
+file(GLOB_RECURSE HEADERS_INC ${CMAKE_CURRENT_SOURCE_DIR}/include/ctpl/*.h)
+list(APPEND HEADERS_INCLUDE ${HEADERS_INC})
+
+message(WARNING ${HEADERS_INCLUDE})
 
 file(GLOB_RECURSE HEADERS src/*.h)
 file(GLOB_RECURSE SOURCES src/*.cpp)
 
 set(MAIN src/nd_descriptor.cpp)
 
-add_executable(${PROJECT_NAME} ${SOURCES} ${SOURCES_INC1} ${SOURCES_INC2} ${MAIN})
+add_executable(${PROJECT_NAME} ${SOURCES} ${MAIN})
 
 target_include_directories(${PROJECT_NAME} PUBLIC src include)
 # target_include_directories(${PROJECT_NAME} PUBLIC ${eigen_DIR})
 # target_include_directories(${PROJECT_NAME} PUBLIC ${libigl_DIR}/include)
+
+target_include_directories(${PROJECT_NAME} PUBLIC ${HEADERS_INCLUDE})
 
 set_target_properties(${PROJECT_NAME} 
     PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BIN})

@@ -40,7 +40,7 @@ class SurfaceStroke: public GeodesicFanBlade {
 		Eigen::VectorXd per_point_diff(const SurfaceStroke& other, std::shared_ptr<ShapeSignature> sig);
 		bool is_disjoint_from(std::shared_ptr<SurfaceStroke> other) const;
 
-		Eigen::MatrixXd SurfaceStroke::to_world() const;
+		Eigen::MatrixXd to_world() const;
 		void display(igl::opengl::glfw::Viewer& viewer, bool draw_points, std::shared_ptr<Geometry> geo = nullptr, bool clear = true, Eigen::Vector3d offset = Eigen::Vector3d::Zero(), Eigen::Vector3d color = Eigen::Vector3d::UnitZ(), std::shared_ptr<SurfaceStroke> this_shared = nullptr);
 
 		std::shared_ptr<Mesh> origin_mesh() const { return _mesh; }

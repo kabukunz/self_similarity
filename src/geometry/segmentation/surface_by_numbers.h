@@ -15,7 +15,7 @@ class SurfaceByNumbers {
 		std::vector<std::shared_ptr<Component>> components();
 
 	private:
-		double SurfaceByNumbers::dihedral_angle(std::shared_ptr<Mesh> mesh, Eigen::DenseIndex face1, Eigen::DenseIndex face2) const;
+		double dihedral_angle(std::shared_ptr<Mesh> mesh, Eigen::DenseIndex face1, Eigen::DenseIndex face2) const;
 
 		double _eta;
 		double _gamma;
