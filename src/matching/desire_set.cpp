@@ -1,4 +1,4 @@
-//#include "desire_set.h" 
+#include "desire_set.h" 
 
 #include <shape_signatures/shape_signature.h>
 

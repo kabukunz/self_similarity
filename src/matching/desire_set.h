@@ -41,6 +41,6 @@ class DesireSet {
 		std::vector<QuadraticBump<T>> _bumps;
 };
 
-#include <matching/desire_set.cpp>
+// #include <matching/desire_set.cpp>
 
 #endif
