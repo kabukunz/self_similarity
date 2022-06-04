@@ -742,7 +742,7 @@ std::vector<std::string> Mesh::calc_obj_vertex_colors() {
 	std::vector<std::array<unsigned char, 3>> bVC;
 
 	for (auto it = VC.begin(); it != VC.end(); ++it) {
-		std::array<unsigned char, 3> bColor{ 0.0, 0.0, 0.0 };
+		std::array<unsigned char, 3> bColor{ 0, 0, 0 };
 
 		for (auto itt = it->begin(); itt != it->end(); ++itt) {
 			for (unsigned int k = 0; k < itt->size(); ++k) {

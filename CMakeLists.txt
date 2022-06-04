@@ -68,7 +68,11 @@ include_directories("${libigl_DIR}/include")
 include_directories("${libigl_DIR}/include/igl/opengl/glfw/imgui")
 include_directories("${libigl_DIR}/external/glad/include")
 include_directories("${libigl_DIR}/external/glfw/include")
+include_directories("${libigl_DIR}/external/libigl-imgui")
 include_directories("${libigl_DIR}/external")
+
+# this is not in libigl, there's a version mismatch
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include/libigl/external/imgui/examples")
 
 
 
@@ -110,7 +114,10 @@ target_include_directories(${PROJECT_NAME} PUBLIC src include)
 # target_include_directories(${PROJECT_NAME} PUBLIC ${eigen_DIR})
 # target_include_directories(${PROJECT_NAME} PUBLIC ${libigl_DIR}/include)
 
-target_include_directories(${PROJECT_NAME} PUBLIC ${HEADERS_INCLUDE})
+target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include/ctpl")
+
+# /Users/max/Developer/Library/Graphics/self_similarity/include/libigl/external/imgui/examples/imgui_impl_glfw.h
+# dep/libigl/external/libigl-imgui
 
 set_target_properties(${PROJECT_NAME} 
     PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BIN})
