@@ -366,8 +366,7 @@ void CRSolver::exception_interval(Threshold interval, double mean, unsigned int 
 		}
 
 		if (inc_norms.size() <= 0) {
-            std::string msg = "There are no included norms?!";
-			throw std::exception(msg);
+			throw std::exception("There are no included norms?!");
 		}
 
 		// Ascending order sort
