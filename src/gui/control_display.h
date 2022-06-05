@@ -72,9 +72,9 @@ class ControlDisplay {
 
 		// Shape Signatures
 		struct HKS {
-			HKS::HKS(): _k(300), _t(0.001f), _tstep(0.3), _sig(nullptr) { }
-			HKS::HKS(double t, double tstep): _k(300), _t(t), _tstep(tstep), _sig(nullptr) { }
-			HKS::HKS(int k, double t, double tstep): _k(k), _t(t), _tstep(tstep), _sig(nullptr) {}
+			HKS(): _k(300), _t(0.001f), _tstep(0.3), _sig(nullptr) { }
+			HKS(double t, double tstep): _k(300), _t(t), _tstep(tstep), _sig(nullptr) { }
+			HKS(int k, double t, double tstep): _k(k), _t(t), _tstep(tstep), _sig(nullptr) {}
 
 			int _k;
 			double _t;
@@ -85,9 +85,9 @@ class ControlDisplay {
 		} _HKSParams;
 
 		struct WKS {
-			WKS::WKS() : _k(300), _e(0.001f), _estep(0.3), _sig(nullptr) { }
-			WKS::WKS(double e, double estep) : _k(300), _e(e), _estep(estep), _sig(nullptr) { }
-			WKS::WKS(int k, double e, double estep) : _k(k), _e(e), _estep(estep), _sig(nullptr) {}
+			WKS() : _k(300), _e(0.001f), _estep(0.3), _sig(nullptr) { }
+			WKS(double e, double estep) : _k(300), _e(e), _estep(estep), _sig(nullptr) { }
+			WKS(int k, double e, double estep) : _k(k), _e(e), _estep(estep), _sig(nullptr) {}
 
 			int _k;
 			double _e;
@@ -98,8 +98,8 @@ class ControlDisplay {
 		} _WKSParams;
 
 		struct SDF {
-			SDF::SDF() : _t(0.001), _tstep(0.01), _sig(nullptr), _minVal(0.0), _maxVal(1.0) { }
-			SDF::SDF(double t, double tstep) : _t(t), _tstep(tstep), _sig(nullptr), _minVal(0.0), _maxVal(1.0) { }
+			SDF() : _t(0.001), _tstep(0.01), _sig(nullptr), _minVal(0.0), _maxVal(1.0) { }
+			SDF(double t, double tstep) : _t(t), _tstep(tstep), _sig(nullptr), _minVal(0.0), _maxVal(1.0) { }
 
 			double _t;
 			double _tstep;

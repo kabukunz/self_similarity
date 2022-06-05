@@ -23,6 +23,6 @@ class QuadraticBump {
 		T _magnitude;
 };
 
-#include <matching/quadratic_bump.cpp>
+// #include <matching/quadratic_bump.cpp>
 
 #endif

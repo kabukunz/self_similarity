@@ -4,7 +4,7 @@
 #include <iostream>
 
 template <typename DerivedVal, typename DerivedVec, typename DerivedHKS>
-  inline bool hks(
+  inline bool hks::hks(
 	const Eigen::MatrixBase<DerivedVal> & eVecs,
 	const Eigen::MatrixBase<DerivedVec> & eVals,
 	double tmin,
@@ -41,7 +41,7 @@ template <typename DerivedVal, typename DerivedVec, typename DerivedHKS>
 } 
 
 template <typename DerivedV, typename DerivedF, typename DerivedHKS>
-  inline bool hks(
+  inline bool hks::hks(
 	const Eigen::MatrixBase<DerivedV>& eVecs,
 	const Eigen::MatrixBase<DerivedF>& eVals,
 	double t,
@@ -63,7 +63,7 @@ template <typename DerivedV, typename DerivedF, typename DerivedHKS>
 }
 
  template <typename DerivedVal, typename DerivedVec, typename DerivedHKS>
-   inline bool hks(
+   inline bool hks::hks(
      const Eigen::MatrixBase<DerivedVal>& eVecs,
 	 const Eigen::MatrixBase<DerivedVec>& eVals,
 	 Eigen::MatrixBase<DerivedHKS>& HKS,

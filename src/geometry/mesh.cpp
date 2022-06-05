@@ -187,7 +187,8 @@ void Mesh::display(igl::opengl::glfw::Viewer& viewer) {
 		viewer.data().set_colors(_V.block(0, 3, _V.rows(), 3));
 	}
 
-	viewer.core.align_camera_center(_V.block(0, 0, _V.rows(), 3), _F);
+    // FIXME:
+	// viewer.core.align_camera_center(_V.block(0, 0, _V.rows(), 3), _F);
 }
 
 bool Mesh::set_scalar_vertex_color(igl::opengl::glfw::Viewer& viewer, const Eigen::MatrixXd& color_per_vertex, igl::ColorMapType cm) {

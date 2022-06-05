@@ -328,12 +328,12 @@ ControlDisplay::ControlDisplay():
 					Eigen::Vector3f bc;
 
 					if (_match_mode == MatchMode::Component) {
-						if (_active_mesh->unproject_onto_mesh(Eigen::Vector2f(x, y), viewer.core.view, viewer.core.proj, viewer.core.viewport, fid, bc, true)) {
+						if (_active_mesh->unproject_onto_mesh(Eigen::Vector2f(x, y), viewer.core.view, viewer.core.proj, viewer().core().viewport, fid, bc, true)) {
 							_active_mesh->select_curve_cover(viewer, fid);
 						}
 					} else {
 						// Cast a ray in the view direction starting from the mouse position
-						if (_active_mesh->unproject_onto_mesh(Eigen::Vector2f(x, y), viewer.core.view, viewer.core.proj, viewer.core.viewport, fid, bc)) {
+						if (_active_mesh->unproject_onto_mesh(Eigen::Vector2f(x, y), viewer.core.view, viewer.core.proj, viewer().core().viewport, fid, bc)) {
 							if (_match_mode == MatchMode::Vertex) {
 								Eigen::DenseIndex cvid = _active_mesh->closest_vertex_id(fid, bc);
 
@@ -366,7 +366,7 @@ ControlDisplay::ControlDisplay():
 		bool handled = false;
 
 		double x = viewer.current_mouse_x;
-		double y = viewer.core.viewport(3) - viewer.current_mouse_y;
+		double y = viewer().core().viewport(3) - viewer.current_mouse_y;
 
 		if (_mouse_down && _match_mode == MatchMode::Patch) {
 			switch (_click_mode) {

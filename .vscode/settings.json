@@ -53,6 +53,10 @@
         "tuple": "cpp",
         "typeindex": "cpp",
         "typeinfo": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "list": "cpp",
+        "set": "cpp",
+        "fstream": "cpp",
+        "future": "cpp"
     }
 }

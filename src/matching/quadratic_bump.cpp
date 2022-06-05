@@ -1,4 +1,4 @@
-//#include "quadratic_bump.h"
+#include "quadratic_bump.h"
 
 #include <cmath>
 

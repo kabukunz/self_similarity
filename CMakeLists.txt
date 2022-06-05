@@ -89,8 +89,46 @@ include_directories(${PROJECT_NAME} PUBLIC ${eigen_DIR})
 # # eigen
 # set(eigen_DIR "${libigl_DIR}/external/eigen")
 
+# find_package(OpenMP REQUIRED)
+set (OpenMP_INCLUDES "/usr/local/opt/libomp/include")
+set (OpenMP_omp_LIBRARY "/usr/local/opt/libomp/lib/libomp.dylib")
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    message("-- Setting OpenMP flags on MacOs. Assuming `brew install libomp`")
+    if(CMAKE_C_COMPILER_ID MATCHES "Clang\$")
+        set(OpenMP_C_FLAGS "-Xpreprocessor -fopenmp -I${OpenMP_INCLUDES}" CACHE INTERNAL "OpenMP flags for Xcode toolchain.")
+        set(OpenMP_C_LIB_NAMES "omp" CACHE INTERNAL "OpenMP lib name for Xcode toolchain.")
+        set(OpenMP_omp_LIBRARY ${OpenMP_omp_LIBRARY} CACHE INTERNAL "OpenMP lib name for Xcode toolchain.")
+    endif()
+
+    if(CMAKE_CXX_COMPILER_ID MATCHES "Clang\$")
+        set(OpenMP_CXX_FLAGS "-Xpreprocessor -fopenmp -I${OpenMP_INCLUDES}" CACHE INTERNAL "OpenMP flags for Xcode toolchain.")
+        set(OpenMP_CXX_LIB_NAMES "omp" CACHE INTERNAL "OpenMP lib name for Xcode toolchain.")
+        set(OpenMP_omp_LIBRARY ${OpenMP_omp_LIBRARY} CACHE INTERNAL "OpenMP lib name for Xcode toolchain.")
+    endif()
+endif()
 
 
+# if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+
+#     if(CMAKE_C_COMPILER_ID STREQUAL "Clang")
+#         set(OpenMP_C_FLAGS "-Xpreprocessor -fopenmp")
+#         set(OpenMP_C_LIB_NAMES "omp")
+#         set(OpenMP_omp_LIBRARY omp)
+#     endif()
+
+#     if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+#         set(OpenMP_CXX_FLAGS "-Xpreprocessor -fopenmp")
+#         set(OpenMP_CXX_LIB_NAMES "omp")
+#         set(OpenMP_omp_LIBRARY omp)
+#     endif()
+
+# endif()
+
+# find_package(OpenMP REQUIRED)
+
+# add_executable(helloworld helloworld.cxx)
+# target_link_libraries(helloworld PRIVATE OpenMP::OpenMP_CXX)
 
 
 # include_directories(${libigl_DIR}/external/glad)
@@ -100,6 +138,13 @@ file(GLOB_RECURSE HEADERS_INC ${CMAKE_CURRENT_SOURCE_DIR}/include/sqlite/*.h)
 list(APPEND HEADERS_INCLUDE ${HEADERS_INC})
 file(GLOB_RECURSE HEADERS_INC ${CMAKE_CURRENT_SOURCE_DIR}/include/ctpl/*.h)
 list(APPEND HEADERS_INCLUDE ${HEADERS_INC})
+file(GLOB_RECURSE HEADERS_INC ${CMAKE_CURRENT_SOURCE_DIR}/include/nvidia/*.h)
+list(APPEND HEADERS_INCLUDE ${HEADERS_INC})
+file(GLOB_RECURSE HEADERS_INC ${OpenMP_INCLUDES})
+list(APPEND HEADERS_INCLUDE ${HEADERS_INC})
+
+
+
 
 message(WARNING ${HEADERS_INCLUDE})
 
@@ -114,10 +159,11 @@ target_include_directories(${PROJECT_NAME} PUBLIC src include)
 # target_include_directories(${PROJECT_NAME} PUBLIC ${eigen_DIR})
 # target_include_directories(${PROJECT_NAME} PUBLIC ${libigl_DIR}/include)
 
+target_include_directories(${PROJECT_NAME} PUBLIC "${OpenMP_INCLUDES}")
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include/ctpl")
+target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include/mobreg/include")
+target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include/cpp-spline/spline/src/main/cpp")
 
-# /Users/max/Developer/Library/Graphics/self_similarity/include/libigl/external/imgui/examples/imgui_impl_glfw.h
-# dep/libigl/external/libigl-imgui
 
 set_target_properties(${PROJECT_NAME} 
     PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BIN})
