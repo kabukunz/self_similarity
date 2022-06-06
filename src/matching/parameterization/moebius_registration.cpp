@@ -287,7 +287,10 @@ struct TriangleMesh : public Mesh< Real >
 			for (int j = 0; j < M.rowSizes[i]; j++) row[M[i][j].N] += M[i][j].Value;
 			M.SetRowSize(i, (int)row.size());
 			int j = 0;
-			for (std::unordered_map< int, Real >::const_iterator iter = row.begin(); iter != row.end(); iter++) M[i][j++] = MatrixEntry< Real, int >(iter->first, iter->second);
+
+            // FIXME:
+            // typedef typename std::unordered_map< int, Real >::const_iterator iter;
+			for (auto iter = row.begin(); iter != row.end(); iter++) M[i][j++] = MatrixEntry< Real, int >(iter->first, iter->second);
 		}
 		return M;
 	}
@@ -664,7 +667,8 @@ struct TriangulatedPolygonMesh : public Mesh< Real >
 			for (int j = 0; j < M.rowSizes[i]; j++) row[M[i][j].N] += M[i][j].Value;
 			M.SetRowSize(i, (int)row.size());
 			int j = 0;
-			for (std::unordered_map< int, Real >::const_iterator iter = row.begin(); iter != row.end(); iter++) M[i][j++] = MatrixEntry< Real, int >(iter->first, iter->second);
+            // FIXME:
+			for (auto iter = row.begin(); iter != row.end(); iter++) M[i][j++] = MatrixEntry< Real, int >(iter->first, iter->second);
 		}
 		return M;
 	}

@@ -68,7 +68,7 @@ ControlDisplay::ControlDisplay():
                 // FIXME:
 				// char filename[MAX_PATH];
 
-				OPENFILENAME ofn;
+				// OPENFILENAME ofn;
 				// ZeroMemory(&filename, sizeof(filename));
 				// ZeroMemory(&ofn, sizeof(ofn));
 				// ofn.lStructSize = sizeof(ofn);
@@ -79,16 +79,16 @@ ControlDisplay::ControlDisplay():
 				// ofn.lpstrTitle = "Select an OBJ file to load.";
 				// ofn.Flags = OFN_DONTADDTORECENT | OFN_FILEMUSTEXIST;
 
-				if (GetOpenFileNameA(&ofn)) {
-					_active_mesh_path = filename;
+				// if (GetOpenFileNameA(&ofn)) {
+				// 	_active_mesh_path = filename;
 
-					load_mesh();
-				}
+				// 	load_mesh();
+				// }
 			}
 
 			// Load Texture
 			if (ImGui::Button("Load Texture", ImVec2(-1, 0))) {
-				char filename[MAX_PATH];
+				// char filename[MAX_PATH];
 
                 // FIXME:
 				// OPENFILENAME ofn;
@@ -102,11 +102,11 @@ ControlDisplay::ControlDisplay():
 				// ofn.lpstrTitle = "Select a texture file to load.";
 				// ofn.Flags = OFN_DONTADDTORECENT | OFN_FILEMUSTEXIST;
 
-				if (GetOpenFileNameA(&ofn)) {
-					_active_mesh_texture_path = filename;
+				// if (GetOpenFileNameA(&ofn)) {
+				// 	_active_mesh_texture_path = filename;
 
-					load_texture();
-				}
+				// 	load_texture();
+				// }
 			}
 
 			if (ImGui::InputDouble("t", &_SDFParams._t, 0, 0, "%.6f")) {
