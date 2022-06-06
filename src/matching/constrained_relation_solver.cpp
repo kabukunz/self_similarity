@@ -365,8 +365,9 @@ void CRSolver::exception_interval(Threshold interval, double mean, unsigned int 
 			}
 		}
 
+        // https://stackoverflow.com/questions/28640553/exception-class-with-a-char-constructor
 		if (inc_norms.size() <= 0) {
-			throw std::exception("There are no included norms?!");
+            throw std::runtime_error("There are no included norms?!");
 		}
 
 		// Ascending order sort
