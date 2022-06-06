@@ -22,7 +22,7 @@ PTUnfolding::~PTUnfolding() {
 }
 
 Eigen::MatrixXi PTUnfolding::get_reindexed_faces() const {
-	throw std::exception("Not Implemented!"s);
+	throw std::runtime_error("Not Implemented!");
 }
 
 Eigen::MatrixXd PTUnfolding::parallel_transport_dijkstra(std::shared_ptr<Patch> patch, std::map<Eigen::DenseIndex, Eigen::DenseIndex>& vert_indices) {

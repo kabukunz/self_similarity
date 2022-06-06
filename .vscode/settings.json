@@ -59,6 +59,11 @@
         "fstream": "cpp",
         "future": "cpp",
         "optional": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "alignedvector3": "cpp",
+        "fft": "cpp",
+        "cstdarg": "cpp",
+        "iomanip": "cpp",
+        "numeric": "cpp"
     }
 }

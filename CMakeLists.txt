@@ -21,8 +21,8 @@ include(${TRAPPER_FILE})
 # libigl
 
 # build libigl as a static library, if OFF use it as header-only library    
-set(LIBIGL_USE_STATIC_LIBRARY OFF CACHE BOOL "" FORCE)
-set(LIBIGL_USE_PREBUILT_LIBRARIES OFF CACHE BOOL "" FORCE)
+set(LIBIGL_USE_STATIC_LIBRARY ON CACHE BOOL "" FORCE)
+# set(LIBIGL_USE_PREBUILT_LIBRARIES OFF CACHE BOOL "" FORCE)
 
 
 option(LIBIGL_WITH_ANTTWEAKBAR       "Use AntTweakBar"                  OFF)
@@ -39,8 +39,8 @@ option(LIBIGL_WITH_OPENGL            "Use OpenGL"                       ON)
 option(LIBIGL_WITH_OPENGL_GLFW       "Use GLFW"                         ON)
 option(LIBIGL_WITH_OPENGL_GLFW_IMGUI "Use ImGui"                        ON)
 option(LIBIGL_WITH_PYTHON            "Use Python"                       OFF)
-option(LIBIGL_WITH_TRIANGLE          "Use Triangle"                     OFF)
-option(LIBIGL_WITH_MMG               "Use Mmg"                          OFF)
+option(LIBIGL_WITH_TRIANGLE          "Use Triangle"                     ON)
+# option(LIBIGL_WITH_MMG               "Use Mmg"                          OFF)
 option(LIBIGL_WITH_PREDICATES        "Use exact predicates"             ON)
 option(LIBIGL_WITH_XML               "Use XML"                          ON)
 option(LIBIGL_WITH_PNG               "Use PNG"                          OFF)
@@ -48,8 +48,8 @@ option(LIBIGL_WITH_PNG               "Use PNG"                          OFF)
 
 trapper_add_package(
     libigl
-    https://github.com/kabukunz/libigl.git
-    5749e43a6862a88a61d5a82cb478e595e0cd65b3
+    https://github.com/libigl/libigl.git
+    v2.1.0
     
     HEADER_ONLY
     VERBOSE
@@ -58,18 +58,22 @@ trapper_add_package(
     )
 
 # set nanoflann dir
-set(libigl_DIR ${TRAPPER_SOURCE_DIR} CACHE STRING "libigl DIR")
+# set(libigl_DIR ${TRAPPER_SOURCE_DIR} CACHE STRING "libigl DIR")
+set(libigl_DIR "${CMAKE_SOURCE_DIR}/include/libigl" CACHE STRING "libigl DIR" FORCE)
 
 message(WARNING "libigl_DIR: ${libigl_DIR}")
 
 # set nanoflann include dir (with no target)
-add_subdirectory(${libigl_DIR})
+# add_subdirectory(${libigl_DIR})
 include_directories("${libigl_DIR}/include")
-include_directories("${libigl_DIR}/include/igl/opengl/glfw/imgui")
+# include_directories("${libigl_DIR}/include/igl/opengl/glfw/imgui")
 include_directories("${libigl_DIR}/external/glad/include")
 include_directories("${libigl_DIR}/external/glfw/include")
+include_directories("${libigl_DIR}/external/imgui")
 include_directories("${libigl_DIR}/external/libigl-imgui")
 include_directories("${libigl_DIR}/external")
+
+
 
 # this is not in libigl, there's a version mismatch
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include/libigl/external/imgui/examples")
@@ -163,6 +167,8 @@ target_include_directories(${PROJECT_NAME} PUBLIC "${OpenMP_INCLUDES}")
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include/ctpl")
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include/mobreg/include")
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include/cpp-spline/spline/src/main/cpp")
+
+target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include/nvidia")
 
 
 set_target_properties(${PROJECT_NAME} 

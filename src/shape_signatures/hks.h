@@ -5,29 +5,46 @@
 #include <Eigen/Sparse>
 #include <Eigen/Core>
 
-  template <typename DerivedVal, typename DerivedVec, typename DerivedHKS>
-  inline bool hks(
-	  const Eigen::MatrixBase<DerivedVal>& eVecs,
-	  const Eigen::MatrixBase<DerivedVec>& eVals,
-	  double tmin,
-	  double tmax,
-	  unsigned int steps,
-	  Eigen::MatrixBase<DerivedHKS>& HKS);
+class hks
+{
+private:
+    /* data */
+public:
+    hks(/* args */);
+    ~hks();
 
-  template <typename DerivedVal, typename DerivedVec, typename DerivedHKS>
-  inline bool hks(
-	  const Eigen::MatrixBase<DerivedVal>& eVecs,
-	  const Eigen::MatrixBase<DerivedVec>& eVals,
-	  double t,
-	  Eigen::MatrixBase<DerivedHKS>& HKS);
+    template <typename DerivedVal, typename DerivedVec, typename DerivedHKS>
+    inline bool hks(
+        const Eigen::MatrixBase<DerivedVal> &eVecs,
+        const Eigen::MatrixBase<DerivedVec> &eVals,
+        double tmin,
+        double tmax,
+        unsigned int steps,
+        Eigen::MatrixBase<DerivedHKS> &HKS);
 
-  template <typename DerivedV, typename DerivedF, typename DerivedHKS>
-  inline bool hks(
-	  const Eigen::MatrixBase<DerivedV>& eVecs,
-	  const Eigen::MatrixBase<DerivedF>& eVals,
-	  Eigen::MatrixBase<DerivedHKS>& HKS,
-	  int steps = -1);
+    template <typename DerivedVal, typename DerivedVec, typename DerivedHKS>
+    inline bool hks(
+        const Eigen::MatrixBase<DerivedVal> &eVecs,
+        const Eigen::MatrixBase<DerivedVec> &eVals,
+        double t,
+        Eigen::MatrixBase<DerivedHKS> &HKS);
 
-#include "hks.cpp"
+    template <typename DerivedV, typename DerivedF, typename DerivedHKS>
+    inline bool hks(
+        const Eigen::MatrixBase<DerivedV> &eVecs,
+        const Eigen::MatrixBase<DerivedF> &eVals,
+        Eigen::MatrixBase<DerivedHKS> &HKS,
+        int steps = -1);
+};
+
+hks::hks(/* args */)
+{
+}
+
+hks::~hks()
+{
+}
+
+// #include "hks.cpp"
 
 #endif

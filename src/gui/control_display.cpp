@@ -65,18 +65,19 @@ ControlDisplay::ControlDisplay():
 			if (ImGui::Button("Load OBJ", ImVec2(-1, 0))) {
 				// Adapted from http://www.cplusplus.com/forum/windows/169960/
 
-				char filename[MAX_PATH];
+                // FIXME:
+				// char filename[MAX_PATH];
 
 				OPENFILENAME ofn;
-				ZeroMemory(&filename, sizeof(filename));
-				ZeroMemory(&ofn, sizeof(ofn));
-				ofn.lStructSize = sizeof(ofn);
-				ofn.hwndOwner = NULL;
-				ofn.lpstrFilter = "OBJ Files\0*.obj\0Any File\0*.*\0";
-				ofn.lpstrFile = filename;
-				ofn.nMaxFile = MAX_PATH;
-				ofn.lpstrTitle = "Select an OBJ file to load.";
-				ofn.Flags = OFN_DONTADDTORECENT | OFN_FILEMUSTEXIST;
+				// ZeroMemory(&filename, sizeof(filename));
+				// ZeroMemory(&ofn, sizeof(ofn));
+				// ofn.lStructSize = sizeof(ofn);
+				// ofn.hwndOwner = NULL;
+				// ofn.lpstrFilter = "OBJ Files\0*.obj\0Any File\0*.*\0";
+				// ofn.lpstrFile = filename;
+				// ofn.nMaxFile = MAX_PATH;
+				// ofn.lpstrTitle = "Select an OBJ file to load.";
+				// ofn.Flags = OFN_DONTADDTORECENT | OFN_FILEMUSTEXIST;
 
 				if (GetOpenFileNameA(&ofn)) {
 					_active_mesh_path = filename;
@@ -89,16 +90,17 @@ ControlDisplay::ControlDisplay():
 			if (ImGui::Button("Load Texture", ImVec2(-1, 0))) {
 				char filename[MAX_PATH];
 
-				OPENFILENAME ofn;
-				ZeroMemory(&filename, sizeof(filename));
-				ZeroMemory(&ofn, sizeof(ofn));
-				ofn.lStructSize = sizeof(ofn);
-				ofn.hwndOwner = NULL;
-				ofn.lpstrFilter = "PNG Files\0*.png\0Any File\0*.*\0";
-				ofn.lpstrFile = filename;
-				ofn.nMaxFile = MAX_PATH;
-				ofn.lpstrTitle = "Select a texture file to load.";
-				ofn.Flags = OFN_DONTADDTORECENT | OFN_FILEMUSTEXIST;
+                // FIXME:
+				// OPENFILENAME ofn;
+				// ZeroMemory(&filename, sizeof(filename));
+				// ZeroMemory(&ofn, sizeof(ofn));
+				// ofn.lStructSize = sizeof(ofn);
+				// ofn.hwndOwner = NULL;
+				// ofn.lpstrFilter = "PNG Files\0*.png\0Any File\0*.*\0";
+				// ofn.lpstrFile = filename;
+				// ofn.nMaxFile = MAX_PATH;
+				// ofn.lpstrTitle = "Select a texture file to load.";
+				// ofn.Flags = OFN_DONTADDTORECENT | OFN_FILEMUSTEXIST;
 
 				if (GetOpenFileNameA(&ofn)) {
 					_active_mesh_texture_path = filename;
@@ -328,12 +330,12 @@ ControlDisplay::ControlDisplay():
 					Eigen::Vector3f bc;
 
 					if (_match_mode == MatchMode::Component) {
-						if (_active_mesh->unproject_onto_mesh(Eigen::Vector2f(x, y), viewer.core.view, viewer.core.proj, viewer().core().viewport, fid, bc, true)) {
+						if (_active_mesh->unproject_onto_mesh(Eigen::Vector2f(x, y), viewer.core.view, viewer.core.proj, viewer.core.viewport, fid, bc, true)) {
 							_active_mesh->select_curve_cover(viewer, fid);
 						}
 					} else {
 						// Cast a ray in the view direction starting from the mouse position
-						if (_active_mesh->unproject_onto_mesh(Eigen::Vector2f(x, y), viewer.core().view, viewer.core.proj, viewer.core().viewport, fid, bc)) {
+						if (_active_mesh->unproject_onto_mesh(Eigen::Vector2f(x, y), viewer.core.view, viewer.core.proj, viewer.core.viewport, fid, bc)) {
 							if (_match_mode == MatchMode::Vertex) {
 								Eigen::DenseIndex cvid = _active_mesh->closest_vertex_id(fid, bc);
 
@@ -366,7 +368,7 @@ ControlDisplay::ControlDisplay():
 		bool handled = false;
 
 		double x = viewer.current_mouse_x;
-		double y = viewer.core().viewport(3) - viewer.current_mouse_y;
+		double y = viewer.core.viewport(3) - viewer.current_mouse_y;
 
 		if (_mouse_down && _match_mode == MatchMode::Patch) {
 			switch (_click_mode) {
