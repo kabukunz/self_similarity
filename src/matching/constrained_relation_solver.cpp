@@ -453,7 +453,8 @@ void CRSolver::exception_interval(Threshold interval, double mean, unsigned int 
 
 			if (interval.contains(sig->get_signature_values().row(vid))) {
 				char metrics[4096];
-				sprintf(metrics, "interval [ %f, %f ], sig %f, shift %f", interval.min(), interval.max(), sig->get_signature_values().row(vid), energy);
+                // FIXME:
+				sprintf(metrics, "interval [ %f, %f ], sig %f, shift %f", interval.min(), interval.max(), sig->get_signature_values().row(vid).mean(), energy);
 				std::cout << metrics << std::endl;
 				//std::cout << energy_curve.transpose() << std::endl;
 				//throw std::exception("Energy did not shift remove exclusion patch?!");

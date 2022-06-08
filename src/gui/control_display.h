@@ -71,10 +71,10 @@ class ControlDisplay {
 		std::shared_ptr<StrokeTransfer> _stroke_transfer;
 
 		// Shape Signatures
-		struct HKS {
-			HKS(): _k(300), _t(0.001f), _tstep(0.3), _sig(nullptr) { }
-			HKS(double t, double tstep): _k(300), _t(t), _tstep(tstep), _sig(nullptr) { }
-			HKS(int k, double t, double tstep): _k(k), _t(t), _tstep(tstep), _sig(nullptr) {}
+		struct hks {
+			hks(): _k(300), _t(0.001f), _tstep(0.3), _sig(nullptr) { }
+			hks(double t, double tstep): _k(300), _t(t), _tstep(tstep), _sig(nullptr) { }
+			hks(int k, double t, double tstep): _k(k), _t(t), _tstep(tstep), _sig(nullptr) {}
 
 			int _k;
 			double _t;

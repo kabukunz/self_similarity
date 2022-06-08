@@ -23,7 +23,7 @@
 
 // includes, project
 #include <exception>
-#define RUNTIME_EXCEPTION throw std::exception 
+#define RUNTIME_EXCEPTION throw std::runtime_error 
 #define LOGIC_EXCEPTION throw std::logic_error
 
 //! Preprocessed command line arguments

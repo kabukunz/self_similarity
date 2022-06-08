@@ -4,7 +4,7 @@ set(PROJECT_NAME selfsim)
 
 project(${PROJECT_NAME} LANGUAGES C CXX)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 14)
 
 set(PROJECT_ROOT ${CMAKE_SOURCE_DIR})
 set(PROJECT_BIN "${PROJECT_ROOT}/bin")
@@ -22,7 +22,6 @@ include(${TRAPPER_FILE})
 
 # build libigl as a static library, if OFF use it as header-only library    
 set(LIBIGL_USE_STATIC_LIBRARY ON CACHE BOOL "" FORCE)
-# set(LIBIGL_USE_PREBUILT_LIBRARIES OFF CACHE BOOL "" FORCE)
 
 
 option(LIBIGL_WITH_ANTTWEAKBAR       "Use AntTweakBar"                  OFF)
@@ -46,16 +45,16 @@ option(LIBIGL_WITH_XML               "Use XML"                          ON)
 option(LIBIGL_WITH_PNG               "Use PNG"                          OFF)
 
 
-trapper_add_package(
-    libigl
-    https://github.com/libigl/libigl.git
-    v2.1.0
+# trapper_add_package(
+#     libigl
+#     https://github.com/libigl/libigl.git
+#     v2.1.0
     
-    HEADER_ONLY
-    VERBOSE
+#     HEADER_ONLY
+#     VERBOSE
 
-    SOURCE_DIR "${CMAKE_SOURCE_DIR}/dep"
-    )
+#     SOURCE_DIR "${CMAKE_SOURCE_DIR}/dep"
+#     )
 
 # set nanoflann dir
 # set(libigl_DIR ${TRAPPER_SOURCE_DIR} CACHE STRING "libigl DIR")
@@ -134,26 +133,111 @@ endif()
 # add_executable(helloworld helloworld.cxx)
 # target_link_libraries(helloworld PRIVATE OpenMP::OpenMP_CXX)
 
-
 # include_directories(${libigl_DIR}/external/glad)
-file(GLOB_RECURSE HEADERS_INC ${CMAKE_CURRENT_SOURCE_DIR}/include/cpp-spline/*.h)
-list(APPEND HEADERS_INCLUDE ${HEADERS_INC})
-file(GLOB_RECURSE HEADERS_INC ${CMAKE_CURRENT_SOURCE_DIR}/include/sqlite/*.h)
-list(APPEND HEADERS_INCLUDE ${HEADERS_INC})
-file(GLOB_RECURSE HEADERS_INC ${CMAKE_CURRENT_SOURCE_DIR}/include/ctpl/*.h)
-list(APPEND HEADERS_INCLUDE ${HEADERS_INC})
-file(GLOB_RECURSE HEADERS_INC ${CMAKE_CURRENT_SOURCE_DIR}/include/nvidia/*.h)
-list(APPEND HEADERS_INCLUDE ${HEADERS_INC})
-file(GLOB_RECURSE HEADERS_INC ${OpenMP_INCLUDES})
-list(APPEND HEADERS_INCLUDE ${HEADERS_INC})
+# file(GLOB_RECURSE HEADERS_INC ${CMAKE_CURRENT_SOURCE_DIR}/include/cpp-spline/*.h)
+# list(APPEND HEADERS_INCLUDE ${HEADERS_INC})
+# file(GLOB_RECURSE HEADERS_INC ${CMAKE_CURRENT_SOURCE_DIR}/include/sqlite/*.h)
+# list(APPEND HEADERS_INCLUDE ${HEADERS_INC})
+# file(GLOB_RECURSE HEADERS_INC ${CMAKE_CURRENT_SOURCE_DIR}/include/ctpl/*.h)
+# list(APPEND HEADERS_INCLUDE ${HEADERS_INC})
+# file(GLOB_RECURSE HEADERS_INC ${CMAKE_CURRENT_SOURCE_DIR}/include/nvidia/*.h)
+# list(APPEND HEADERS_INCLUDE ${HEADERS_INC})
+# file(GLOB_RECURSE HEADERS_INC ${OpenMP_INCLUDES})
+# list(APPEND HEADERS_INCLUDE ${HEADERS_INC})
 
 
+set(SOURCES 
+src/nd_descriptor.cpp
+src/matching/spherical_threshold.cpp
+src/matching/stroke_transfer.cpp
+# src/matching/parameterization/moebius_registration.cpp
+src/matching/parameterization/discrete_exponential_map.cpp
+src/matching/parameterization/curve_unrolling.cpp
+src/matching/parameterization/pt_unfolding.cpp
+src/matching/desire_set.cpp
+src/matching/quadratic_bump.cpp
+src/matching/threshold.cpp
+src/matching/constrained_relation_solver.cpp
+src/matching/self_similarity/self_similarity_map.cpp
+src/matching/surface_stroke.cpp
+src/matching/geodesic_fan.cpp
+# src/unit_tests/stroke_transfer/test_stroke_transfer.cpp
+src/experiments/stroke_transfer_exp.cpp
+src/algorithms/shortest_path.cpp
+src/shape_signatures/wave_kernel_signature.cpp
+src/shape_signatures/shape_diameter_signature.cpp
+src/shape_signatures/texture_signature.cpp
+src/shape_signatures/hks.cpp
+src/shape_signatures/spectral_signature.cpp
+src/shape_signatures/heat_kernel_signature.cpp
+src/shape_signatures/shape_signature.cpp
+# src/utilities/ocl/oclUtils.cpp
+# src/utilities/ocl/cmd_arg_reader.cpp
+# src/utilities/ocl/shrUtils.cpp
+src/utilities/multithreading.cpp
+src/attributes/transfer/meshmatch.cpp
+src/benchmarks/model_manifest.cpp
+src/benchmarks/eigen_decomp.cpp
+src/gui/control_display.cpp
+src/geometry/geometry.cpp
+src/geometry/mesh.cpp
+src/geometry/segmentation/surface_by_numbers.cpp
+src/geometry/segmentation/spectral_clustering.cpp
+src/geometry/patch.cpp
+src/geometry/component.cpp
+src/geometry/tests/intersection.cpp
+)
+
+message(WARNING ${SOURCES})
 
 
-message(WARNING ${HEADERS_INCLUDE})
+# file(GLOB_RECURSE HEADERS src/*.h)
+# file(GLOB_RECURSE SOURCES src/*.cpp)
 
-file(GLOB_RECURSE HEADERS src/*.h)
-file(GLOB_RECURSE SOURCES src/*.cpp)
+set(HEADERS 
+src/matching/desire_set.h
+src/matching/constrained_relation_solver.h
+src/matching/parameterization/discrete_exponential_map.h
+src/matching/parameterization/curve_unrolling.h
+# src/matching/parameterization/moebius_registration.h
+src/matching/parameterization/pt_unfolding.h
+src/matching/quadratic_bump.h
+src/matching/threshold.h
+src/matching/surface_stroke.h
+src/matching/stroke_transfer.h
+src/matching/geodesic_fan.h
+src/matching/spherical_threshold.h
+src/matching/self_similarity/self_similarity_map.h
+# src/unit_tests/unit_tests.h
+# src/unit_tests/stroke_transfer/test_stroke_transfer.h
+src/experiments/stroke_transfer_exp.h
+src/algorithms/shortest_path.h
+src/shape_signatures/texture_signature.h
+src/shape_signatures/hks.h
+src/shape_signatures/spectral_signature.h
+src/shape_signatures/shape_diameter_signature.h
+src/shape_signatures/heat_kernel_signature.h
+src/shape_signatures/shape_signature.h
+src/shape_signatures/wave_kernel_signature.h
+src/utilities/multithreading.h
+src/utilities/eigen_read_write_binary.h
+src/utilities/gen_id.h
+src/utilities/timer.h
+src/utilities/units.h
+src/attributes/transfer/meshmatch.h
+src/benchmarks/eigen_decomp.h
+src/benchmarks/model_manifest.h
+src/gui/control_display.h
+src/geometry/segmentation/surface_by_numbers.h
+src/geometry/segmentation/spectral_clustering.h
+src/geometry/tests/intersection.h
+src/geometry/mesh.h
+src/geometry/patch.h
+src/geometry/component.h
+src/geometry/geometry.h
+)
+
+message(WARNING ${HEADERS})
 
 set(MAIN src/nd_descriptor.cpp)
 

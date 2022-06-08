@@ -144,7 +144,7 @@ std::shared_ptr<HeatKernelSignature> operator-(std::shared_ptr<HeatKernelSignatu
 
 	Eigen::MatrixXd residual = lhs->get_signature_values() - rhs->get_signature_values();
 
-	throw std::exception("Not implemented!"s);
+	throw std::runtime_error("Not implemented!");
 }
 
 const Eigen::VectorXd HeatKernelSignature::lerpable_coord(Eigen::DenseIndex fid, Eigen::DenseIndex vid) {
