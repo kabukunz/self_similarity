@@ -254,6 +254,8 @@ target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/i
 
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include/nvidia")
 
+# target_link_libraries(${PROJECT_NAME} igl::opengl_glfw)
 
 set_target_properties(${PROJECT_NAME} 
     PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BIN})
+
